@@ -18,8 +18,8 @@ RenderSettings:
   m_FogColor: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 20
-  m_LinearFogEnd: 60
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 50
   m_AmbientSkyColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -94,7 +94,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: d131908f7cde7445d988230eb0c022dd, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: d131908f7cde7445d988230eb0c022dd,
+    type: 2}
 --- !u!196 &5280
 NavMeshSettings:
   serializedVersion: 2
@@ -452,12 +453,14 @@ PlayableDirector:
   m_GameObject: {fileID: 1438375825}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 0}
+  m_PlayableAsset: {fileID: 11400000, guid: 3db453a5bd0c6db4a890978fa53a20d4, type: 2}
   m_InitialState: 1
   m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: -6991862282957973549, guid: 3db453a5bd0c6db4a890978fa53a20d4, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1680985569
@@ -782,7 +785,8 @@ MonoBehaviour:
   secondDirection: {x: 0, y: 0, z: 0}
   poolSize: 100
   playedAnimators: []
-  playedTimelines: []
+  playedTimelines:
+  - {fileID: 1438375827}
   allowTurn: 1
   noDeath: 0
   drawDirection: 0
@@ -959,7 +963,7 @@ MonoBehaviour:
     m_Bits: 128
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 2
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25

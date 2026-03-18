@@ -151,16 +151,27 @@ namespace DancingLineFanmade.Level
 
         public void DoShake(float power = 1f, float duration = 3f)
         {
-            if (shakeTween != null)
-            {
-                shakeTween.Kill();
-                shakeTween = null;
-            }
+            // 1. 停止之前的动画，但【不要】手动重置 shakePower 变量
+            // 这样 shakePower 会保留在被 Kill 掉那一刻的数值，实现“继承”
+            shakeTween?.Kill();
 
-            shakeTween = DOTween.To(() => shakePower, x => shakePower = x, power, duration * 0.5f).SetEase(Ease.Linear);
-            shakeTween.SetLoops(2, LoopType.Yoyo);
-            shakeTween.OnUpdate(ShakeUpdate);
-            shakeTween.OnComplete(ShakeFinished);
+            // 2. 创建序列，实现：当前值 -> 目标值 -> 0 的平滑过渡
+            Sequence seq = DOTween.Sequence();
+
+            // 第一阶段：从“当前强度”过渡到“目标强度” (缓入)
+            // DOTween.To(() => shakePower, ...) 会自动读取变量的当前状态作为起点
+            seq.Append(DOTween.To(() => shakePower, x => shakePower = x, power, duration * 0.5f)
+                .SetEase(Ease.OutQuad)); // 使用 OutQuad 让增加过程更平滑
+
+            // 第二阶段：从“目标强度”回落到 0 (缓出)
+            seq.Append(DOTween.To(() => shakePower, x => shakePower = x, 0f, duration * 0.5f)
+                .SetEase(Ease.InQuad)); // 使用 InQuad 让结束过程更自然
+
+            // 绑定更新和完成回调
+            seq.OnUpdate(ShakeUpdate);
+            seq.OnComplete(ShakeFinished);
+
+            shakeTween = seq;
         }
 
         private void ShakeUpdate()
@@ -168,10 +179,30 @@ namespace DancingLineFanmade.Level
             scale.transform.localPosition = new Vector3(UnityEngine.Random.value * shakePower,
                 UnityEngine.Random.value * shakePower, UnityEngine.Random.value * shakePower);
         }
+        public void ResetShake()
+        {
+            shakeTween?.Kill();
+            shakePower = 0f;
+            if (scale != null) scale.localPosition = Vector3.zero;
+        }
 
         private void ShakeFinished()
         {
-            scale.transform.localPosition = Vector3.zero;
+            if (scale != null) scale.localPosition = Vector3.zero;
+            shakePower = 0f;
+        }
+        public void KillAllCameraTweens()
+        {
+            // 只杀掉相机脚本控制的这些 Tween
+            offsetTween?.Kill();
+            rotationTween?.Kill();
+            scaleTween?.Kill();
+            shakeTween?.Kill();
+            fovTween?.Kill();
+
+            // 重置震动相关变量
+            shakePower = 0f;
+            if (scale != null) scale.localPosition = Vector3.zero;
         }
     }
 

@@ -4801,7 +4801,7 @@ ParticleSystemRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9636,7 +9636,7 @@ ParticleSystemRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9835,9 +9835,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crownObject: {fileID: 8493128393788387721}
-  usingOldCameraFollower: 0
-  crownAura: {fileID: 6756496787503259910}
   crownRenderer: {fileID: 7624165498405866259}
+  revivePosition: {fileID: 2332880161426662187}
+  crownAura: {fileID: 6756496787503259910}
+  auraColor: {r: 1, g: 0.972549, b: 0, a: 1}
+  AutoRecord: 0
+  GameTime: 6
+  playerSpeed: 12
+  usingOldCameraFollower: 0
   direction: 0
   cameraNew:
     offset: {x: 0, y: 0, z: 0}
@@ -9879,10 +9884,6 @@ MonoBehaviour:
   onRevive:
     m_PersistentCalls:
       m_Calls: []
-  AutoRecord: 0
-  GameTime: 6
-  playerSpeed: 12
-  revivePosition: {fileID: 2332880161426662187}
 --- !u!1 &7624165497753955748
 GameObject:
   m_ObjectHideFlags: 0

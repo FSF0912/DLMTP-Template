@@ -21,7 +21,7 @@ namespace DancingLineFanmade.Trigger
 
         private GameObject Aura
         {
-            get => transform.Find("Aura").gameObject;
+            get => transform.Find("FX_Aura_TTF").gameObject;
         }
 
         private void Start()

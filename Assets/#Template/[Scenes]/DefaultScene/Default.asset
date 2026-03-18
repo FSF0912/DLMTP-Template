@@ -18,7 +18,7 @@ MonoBehaviour:
   timeScale: 1
   gravity: {x: 0, y: -9.3, z: 0}
   playerHeadBoxColliderSize: {x: 0.3, y: 1, z: 0.3}
-  levelAudioClip: {fileID: 8300000, guid: 50d62b8378d9e9743bcf220acce3d17e, type: 3}
+  levelAudioClip: {fileID: 8300000, guid: cc3dd20263770244488cfd9b50ff8884, type: 3}
   useCustomLevelTime: 0
   levelTotalTime: 2
   haveMultipleAudio: 0

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/#Template/[Scenes]/DefaultScene/Scene.unity
-    guid: 630e155e1ef5f6b41bc8267d85ccb228
+    path: Assets/Samples/Demo/UIParticle_Demo.unity
+    guid: 1fc4d0f41c2bd3745b97b439cca95c22
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

@@ -184,6 +184,19 @@ namespace DancingLineFanmade.Trigger
             Time.timeScale = 1;
             Player.Instance.GetComponent<BoxCollider>().size = Player.Instance.levelData.playerHeadBoxColliderSize;
             Player.Instance.transform.localScale = new Vector3(1f, 1f, 1f);
+
+            if (CameraFollower.Instance != null)
+            {
+                CameraFollower.Instance.KillAllCameraTweens();
+            }
+
+            player.transform.DOKill();
+
+            // 强制归零，防止复活后第一次震动继承了死亡时的残余强度
+            if (CameraFollower.Instance != null)
+            {
+                CameraFollower.Instance.ResetShake();
+            }
         }
     }
 }

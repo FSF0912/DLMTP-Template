@@ -43,7 +43,7 @@ namespace DancingLineFanmade.Trigger
             if (QualitySettings.GetQualityLevel() > 0) effect = Instantiate(effectPrefab, transform.position, Quaternion.Euler(-90, 0, 0));
             if (add) player.BlockCount++;
             if (add) LevelManager.revivePlayer += ResetData;
-            transform.Find("Aura").gameObject.SetActive(false);
+            transform.Find("FX_Aura_TTF").gameObject.SetActive(false);
         }
 
         private void ResetData()
