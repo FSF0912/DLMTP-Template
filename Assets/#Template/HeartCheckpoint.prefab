@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8032986928119790792}
   - component: {fileID: 1124751191757954650}
   - component: {fileID: 8032986928119790793}
+  - component: {fileID: 4377611398798091970}
   m_Layer: 0
   m_Name: CheckpointTrigger
   m_TagString: Untagged
@@ -108,6 +109,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc18c0e2d0a20d418611854562c7fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4377611398798091970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555619824945676824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b70ff287d33f046931e21edf621ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DancingLineFanmade.Trigger.TriggerDrawer
+  color: {r: 1, g: 0, b: 0.07980776, a: 0.6}
 --- !u!1 &839717366704941577
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotator: {fileID: 533166035383947632}
+  AutoRecord: 0
+  GameTime: 6
+  playerSpeed: 12
   usingOldCameraFollower: 0
   direction: 0
   cameraNew:
@@ -198,9 +215,6 @@ MonoBehaviour:
   onRevive:
     m_PersistentCalls:
       m_Calls: []
-  AutoRecord: 0
-  GameTime: 6
-  playerSpeed: 12
 --- !u!1 &6032378458756758833
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +276,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -283,6 +299,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -348,6 +365,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -369,6 +388,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -434,6 +454,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -455,6 +477,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0

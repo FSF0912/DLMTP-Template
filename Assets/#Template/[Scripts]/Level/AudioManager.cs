@@ -14,38 +14,66 @@ namespace DancingLineFanmade.Level
             Object.Destroy(audioSource.gameObject, clip.length);
         }
 
-        public static AudioSource PlayTrack(AudioClip clip, float volume)
+        public static AudioSource PlayTrack(AudioClip clip, float volume, bool play = true)
         {
             AudioSource audioSource = new GameObject(clip.name).AddComponent<AudioSource>();
             audioSource.clip = clip;
             audioSource.volume = volume;
-            audioSource.Play();
+            if (play) audioSource.Play();
             return audioSource;
         }
 
         public static float Time
         {
-            get => Player.Instance.SoundTrack.time;
-            set => Player.Instance.SoundTrack.time = value;
+            get
+            {
+                if (!Player.Instance.SoundTrack) return 0f;
+                return Player.Instance.SoundTrack.time;
+            }
+
+            set
+            {
+                Player.Instance.SoundTrack.time = value;
+            }
         }
 
         public static float Pitch
         {
-            get => Player.Instance.SoundTrack.pitch;
-            set => Player.Instance.SoundTrack.pitch = value;
+            get
+            {
+                if (!Player.Instance.SoundTrack) return 0f;
+                return Player.Instance.SoundTrack.pitch;
+            }
+
+            set
+            {
+                if (Player.Instance.SoundTrack) Player.Instance.SoundTrack.pitch = value;
+            }
         }
 
         public static float Volume
         {
-            get => Player.Instance.SoundTrack.volume;
-            set => Player.Instance.SoundTrack.volume = value;
+            get
+            {
+                if (!Player.Instance.SoundTrack) return 0f;
+                return Player.Instance.SoundTrack.volume;
+            }
+
+            set
+            {
+                if (Player.Instance.SoundTrack) Player.Instance.SoundTrack.volume = value;
+            }
         }
 
         public static float Progress
         {
-            get => Player.Instance.SoundTrack ? (Player.Instance.levelData.useCustomLevelTime 
-                ? Player.Instance.SoundTrack.time / Player.Instance.levelData.levelTotalTime 
-                : Player.Instance.SoundTrack.time / Player.Instance.SoundTrack.clip.length) : 0f;
+            get
+            {
+                if (!Player.Instance.SoundTrack) return 0f;
+                return Player.Instance.levelData.useCustomLevelTime
+                    ? Player.Instance.SoundTrack.time / Player.Instance.levelData.levelTotalTime
+                    : Player.Instance.SoundTrack.time / Player.Instance.SoundTrack.clip.length;
+            }
         }
 
         public static void Stop()

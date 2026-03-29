@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DancingLineFanmade.Guidance
+namespace DancingLineFanmade.Guideline
 {
     [DisallowMultipleComponent]
     public class GuidanceEnabled : MonoBehaviour
@@ -12,11 +12,11 @@ namespace DancingLineFanmade.Guidance
         [SerializeField] private Sprite off;
         [SerializeField] private new bool enabled = false;
 
-        private GuidanceController controller;
+        private GuidelineManager controller;
 
         private void Start()
         {
-            controller = FindObjectOfType<GuidanceController>();
+            controller = FindFirstObjectByType<GuidelineManager>();
             if (!controller)
             {
                 gameObject.SetActive(false);
@@ -26,7 +26,7 @@ namespace DancingLineFanmade.Guidance
             
             SetGuidance(enabled);
 
-            if (!controller.boxHolder)
+            if (!controller.guidelineTapHolder)
             {
                 GetComponent<Button>().interactable = false;
                 foreach (Image i in GetComponentsInChildren<Image>())
@@ -50,12 +50,12 @@ namespace DancingLineFanmade.Guidance
             if (enabled)
             {
                 image.sprite = on;
-                if (controller.boxHolder) controller.boxHolder.gameObject.SetActive(true);
+                if (controller.guidelineTapHolder) controller.guidelineTapHolder.gameObject.SetActive(true);
             }
             else
             {
                 image.sprite = off;
-                if (controller.boxHolder) controller.boxHolder.gameObject.SetActive(false);
+                if (controller.guidelineTapHolder) controller.guidelineTapHolder.gameObject.SetActive(false);
             }
         }
     }

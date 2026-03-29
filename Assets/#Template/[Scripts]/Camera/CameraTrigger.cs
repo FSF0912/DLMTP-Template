@@ -3,6 +3,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 namespace DancingLineFanmade.Trigger
 {
@@ -11,10 +12,10 @@ namespace DancingLineFanmade.Trigger
         private CameraFollower follower;
 
         [SerializeField] private UnityEvent onFinished = new UnityEvent();
-        [SerializeField] private Vector3 offset = Vector3.zero;
-        [SerializeField] private Vector3 rotation = new Vector3(54f, 45f, 0f);
-        [SerializeField] private Vector3 scale = Vector3.one;
-        [SerializeField, Range(0f, 179f)] private float fieldOfView = 80f;
+        [SerializeField] public Vector3 offset = Vector3.zero;
+        [SerializeField] public Vector3 rotation = new Vector3(54f, 45f, 0f);
+        [SerializeField] public Vector3 scale = Vector3.one;
+        [SerializeField, Range(0f, 179f)] public float fieldOfView = 80f;
         [SerializeField] private bool follow = true;
         [SerializeField, MinValue(0f)] private float duration = 2f;
         [SerializeField] private bool useCurve = false;
@@ -22,6 +23,8 @@ namespace DancingLineFanmade.Trigger
         [SerializeField, ShowIf("@useCurve == true")] private AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         [SerializeField] private RotateMode mode = RotateMode.FastBeyond360;
         [SerializeField] private bool canBeTriggered = true;
+
+        [SerializeField, HideInInspector] private PreviewCamera previewCamera;
 
         private void Start()
         {
@@ -45,5 +48,55 @@ namespace DancingLineFanmade.Trigger
                 follower.Trigger(offset, rotation, scale, fieldOfView, duration, ease, mode, onFinished, useCurve, curve);
             }
         }
+
+        #if UNITY_EDITOR
+
+        [Button("Add Preview Camera", ButtonSizes.Large), HideIf("@previewCamera != null")]
+        private void Add()
+        {
+            var obj = new GameObject("PreviewCamera");
+            obj.transform.parent = this.transform;
+            obj.transform.localPosition = Vector3.zero;
+            previewCamera = obj.AddComponent<PreviewCamera>();
+            obj.name = $"PreviewCamera of {this.name}";
+
+            previewCamera.rotator = new GameObject("Rotator").transform;
+            previewCamera.rotator.parent = obj.transform;
+            previewCamera.rotator.localPosition = Vector3.zero;
+
+            previewCamera.scale = new GameObject("Scale").transform;
+            previewCamera.scale.parent = previewCamera.rotator;
+            previewCamera.scale.localPosition = Vector3.zero;
+
+            Transform cam_temp = new GameObject("Camera").transform;
+            cam_temp.parent = previewCamera.scale;
+            cam_temp.localPosition = new (0, 0, -15f);
+            previewCamera.cam = cam_temp.gameObject.AddComponent<Camera>();
+
+            previewCamera.cam.tag = "EditorOnly";
+            StartCoroutine(UpdatePreview());
+        }
+
+        IEnumerator UpdatePreview()
+        {
+            yield return null;
+            previewCamera?.UpdateCam(this);
+        }
+
+        [Button("Delete Preview Camera", ButtonSizes.Large), HideIf("@previewCamera == null")]
+        private void Delete()
+        {
+            DestroyImmediate(previewCamera.gameObject);
+        }
+
+        private void OnValidate()
+        {
+            if (previewCamera != null)
+            {
+                previewCamera.UpdateCam(this);
+            }
+        }
+
+#endif
     }
 }

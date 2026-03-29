@@ -9771,6 +9771,7 @@ GameObject:
   - component: {fileID: 7624165497488238419}
   - component: {fileID: 7624165497488238429}
   - component: {fileID: 7781688429451391512}
+  - component: {fileID: 2338836626236863484}
   m_Layer: 0
   m_Name: CrownTrigger
   m_TagString: Untagged
@@ -9884,6 +9885,19 @@ MonoBehaviour:
   onRevive:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2338836626236863484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624165497488238431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b70ff287d33f046931e21edf621ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DancingLineFanmade.Trigger.TriggerDrawer
+  color: {r: 1, g: 0.9878479, b: 0, a: 0.6}
 --- !u!1 &7624165497753955748
 GameObject:
   m_ObjectHideFlags: 0
