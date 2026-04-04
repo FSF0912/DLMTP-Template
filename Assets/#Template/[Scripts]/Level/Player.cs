@@ -390,8 +390,8 @@ namespace DancingLineFanmade.Level
 
                 foreach (Animator a in playedAnimators) a.speed = 1f;
                 foreach (PlayableDirector p in playedTimelines) p.Play();
-                foreach (PlayAnimator p in FindObjectsOfType<PlayAnimator>(true)) foreach (SingleAnimator s in p.animators) if (s.played) s.PlayAnimator();
-                foreach (FakePlayer f in FindObjectsOfType<FakePlayer>(true)) if (f.playing) f.state = FakePlayerState.Moving;
+                foreach (PlayAnimator p in FindObjectsByType<PlayAnimator>(FindObjectsSortMode.None)) foreach (SingleAnimator s in p.animators) if (s.played) s.PlayAnimator();
+                foreach (FakePlayer f in FindObjectsByType<FakePlayer>(FindObjectsSortMode.None)) if (f.playing) f.state = FakePlayerState.Moving;
 
             }
             else if (delay > 0f)
@@ -399,8 +399,8 @@ namespace DancingLineFanmade.Level
                 LevelManager.GameState = GameStatus.Playing;
                 foreach (Animator a in playedAnimators) a.speed = 1f;
                 foreach (PlayableDirector p in playedTimelines) p.Play();
-                foreach (PlayAnimator p in FindObjectsOfType<PlayAnimator>(true)) foreach (SingleAnimator s in p.animators) if (s.played) s.PlayAnimator();
-                foreach (FakePlayer f in FindObjectsOfType<FakePlayer>(true)) if (f.playing) f.state = FakePlayerState.Moving;
+                foreach (PlayAnimator p in FindObjectsByType<PlayAnimator>(FindObjectsSortMode.None)) foreach (SingleAnimator s in p.animators) if (s.played) s.PlayAnimator();
+                foreach (FakePlayer f in FindObjectsByType<FakePlayer>(FindObjectsSortMode.None)) if (f.playing) f.state = FakePlayerState.Moving;
                 CreateTail();
                 Events?.Invoke(1);
                 if (startPage)

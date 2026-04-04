@@ -10,21 +10,21 @@ namespace DancingLineFanmade.Guideline
         [SerializeField] private Image background;
         [SerializeField] private Sprite on;
         [SerializeField] private Sprite off;
-        [SerializeField] private new bool enabled = false;
 
         private GuidelineManager controller;
 
         private void Start()
         {
             controller = FindFirstObjectByType<GuidelineManager>();
+            int guidanceEnabled = PlayerPrefs.GetInt("GuidanceEnabled", 1);
             if (!controller)
             {
                 gameObject.SetActive(false);
                 return;
             }
-            
-            
-            SetGuidance(enabled);
+
+
+            SetGuidance(guidanceEnabled == 1);
 
             if (!controller.guidelineTapHolder)
             {
@@ -41,8 +41,7 @@ namespace DancingLineFanmade.Guideline
 
         public void OnClick()
         {
-            enabled = !enabled;
-            SetGuidance(enabled);
+            SetGuidance(PlayerPrefs.GetInt("GuidanceEnabled", 1) == 0);
         }
 
         private void SetGuidance(bool enabled)
@@ -57,6 +56,7 @@ namespace DancingLineFanmade.Guideline
                 image.sprite = off;
                 if (controller.guidelineTapHolder) controller.guidelineTapHolder.gameObject.SetActive(false);
             }
+            PlayerPrefs.SetInt("GuidanceEnabled", enabled ? 1 : 0);
         }
     }
 }

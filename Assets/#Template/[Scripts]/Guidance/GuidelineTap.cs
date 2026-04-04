@@ -73,11 +73,12 @@ namespace DancingLineFanmade.Guideline
             else SetDisplay(false);
         }
 
-        public void AddBoxCollider(Vector3 size)
+        public BoxCollider AddBoxCollider(Vector3 size)
         {
             autoplayCollider = gameObject.AddComponent<BoxCollider>();
             autoplayCollider.isTrigger = true;
             autoplayCollider.size = size;
+            return autoplayCollider;
         }
 
         private void Trigger()
